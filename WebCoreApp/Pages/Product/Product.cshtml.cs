@@ -1,21 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO.Pipes;
+using System.Security.Cryptography.X509Certificates;
 using WebCoreApp.Pages.Model;
 
 namespace WebCoreApp.Pages.Product
 {
     public class ProductModel : PageModel
-    {
+    {       
         public string Strdata;
         public List<ProductTbl> Product = new List<ProductTbl>();
-        string path = @"Data Source=.\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True;";      
+        string path = @"Data Source=.\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True;";
         public void OnGet()
-        {            
-            string a = Request.Query["data"].ToString();
-            if (!string.IsNullOrEmpty(a))
-                Strdata = a;
+        {
+            string Dispmsg = Request.Query["data"].ToString();
+            if (!string.IsNullOrEmpty(Dispmsg))
+                Strdata = Dispmsg;
             SqlConnection con = new SqlConnection(path);
             con.Open();
             SqlCommand cmd = new SqlCommand("select * from Product", con);
@@ -33,7 +36,7 @@ namespace WebCoreApp.Pages.Product
                 Product.Add(obj);
             }
             con.Close();
-        }     
+        }
         public void OnPost()
         {
             string DMode = Request.Form["DeletemodeId"].ToString();
@@ -110,7 +113,7 @@ namespace WebCoreApp.Pages.Product
                             }
                         }
                     }
-                }              
+                }
                 Response.Redirect("/Product/Product?data="+Strdata);
             }
             catch (Exception ex)

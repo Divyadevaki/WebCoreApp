@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Linq;
+using System.Text.Json.Nodes;
+using WebCoreApp.Pages.Model;
+
 
 namespace WebCoreApp.Pages
 {
@@ -11,7 +15,9 @@ namespace WebCoreApp.Pages
         {
             _logger = logger;
         }
-
+        public void OnGet(string value)
+        {
+           
         }
     }
 }
