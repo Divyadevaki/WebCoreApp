@@ -13,9 +13,7 @@
 <script src="~/js/jquery.validate.min.js"></script>
 <script src="~/js/jquery.validate.js"></script>
 
-
 <h1>Welcome to Product List</h1>
-
 
 <div>
     <a class="btn btn-group btn-outline-primary" id="CreateNew" onclick="CreateRecord()">Create</a>
@@ -68,9 +66,9 @@
                 </a>
             </div>
             <form method="post">
-            <div class="modal-body" id="Idmdlbody">
+                <div class="modal-body" id="Idmdlbody">
 
-               
+
                     <div class="container">
                         <input type="text" id="mode" name="mode" value="" hidden>
                         <input type="text" id="IdmdlProductId" name="IdmdlProductId" hidden>
@@ -85,55 +83,60 @@
                         </div>
                     </div>
 
-              
-            </div>
-            <div class="modal-footer">
 
-                <div class="row">
-                    <div>
-                        <button type="submit" class="btn btn-info btn-success" id="IdSave">Save</button>
-                        <button type="button" class="btn btn-info btn-danger" onclick="closeEditmodal()" id="IdCancel">Cancel</button>
-                    </div>
                 </div>
+                <div class="modal-footer">
 
-            </div>
-              </form>
+                    <div class="row">
+                        <div>
+                            <button type="submit" class="btn btn-info btn-success" id="IdSave">Save</button>
+                            <button type="button" class="btn btn-info btn-danger" onclick="closeEditmodal()" id="IdCancel">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <form method="post">
     <input id="DeletemodeId" name="DeletemodeId" value="" hidden />
-<div class="modal fade" id="IdCancelModal">
-    <div class="modal-dialog">
-        <div class="modal-content" style="background-color:lightsalmon; border-width: 3px; border-color: cadetblue; border-radius: 5px">
-            <div class="modal-header">
-                <b>Delete Confirmation</b>
-                <a href="#" id="cancelmdlclose" class="btn-close" data-dismiss="modal"></a>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">Do you want to delete this Product</div>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <div>
-                        <button type="submit" class="btn btn-info btn-success" id="IdOk" onclick="ConfirmDelete()">OK</button>
-                        <button type="button" class="btn btn-info btn-danger" id="IdntOk" onclick="closeCancelmodal()" data-dismiss="modal">Cancel</button>
+    <div class="modal fade" id="IdCancelModal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color:lightsalmon; border-width: 3px; border-color: cadetblue; border-radius: 5px">
+                <div class="modal-header">
+                    <b>Delete Confirmation</b>
+                    <a href="#" id="cancelmdlclose" class="btn-close" data-dismiss="modal"></a>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">Do you want to delete this Product</div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div>
+                            <button type="submit" class="btn btn-info btn-success" id="IdOk" onclick="ConfirmDelete()">OK</button>
+                            <button type="button" class="btn btn-info btn-danger" id="IdntOk" onclick="closeCancelmodal()" data-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </form>
-
+@if (Model.Strdata != null)
+{
+    <script type="text/javascript">
+        alert('@Model.Strdata');
+    </script>
+}
 
 <script type="text/javascript">
     debugger
 
     function geteditmdl(data) {
         $('#mode').attr("value", "Update");
-        
+
         $('#IdmdlProductId').val(data.split('~')[0]);
         $('#IdmdlProductName').val(data.split('~')[1]);
         $('#IdmdlDescription').val(data.split('~')[2]);
@@ -152,20 +155,20 @@
     }
 
     function ConfirmDelete(data) {
-       
+
         $('#IdCancelModal').modal('hide');
     }
 
     function CreateRecord() {
 
         $('#mode').attr("value", "Insert");
-        
+
         $('#IdmdlProductId').val("");
         $('#IdmdlProductName').val("");
         $('#IdmdlDescription').val("");
         $('#IdmdlPrice').val("");
         $('#IdEditmodal').modal('show');
     }
-   
-    
+
+
 </script>

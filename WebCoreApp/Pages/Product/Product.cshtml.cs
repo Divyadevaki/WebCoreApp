@@ -8,11 +8,14 @@ namespace WebCoreApp.Pages.Product
 {
     public class ProductModel : PageModel
     {
+        public string Strdata;
         public List<ProductTbl> Product = new List<ProductTbl>();
-        string path = @"Data Source=.\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True;";
+        string path = @"Data Source=.\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True;";      
         public void OnGet()
-        {
-
+        {            
+            string a = Request.Query["data"].ToString();
+            if (!string.IsNullOrEmpty(a))
+                Strdata = a;
             SqlConnection con = new SqlConnection(path);
             con.Open();
             SqlCommand cmd = new SqlCommand("select * from Product", con);
@@ -28,11 +31,9 @@ namespace WebCoreApp.Pages.Product
                     Price = dr.GetDouble(4)
                 };
                 Product.Add(obj);
-
             }
-
             con.Close();
-        }
+        }     
         public void OnPost()
         {
             string DMode = Request.Form["DeletemodeId"].ToString();
@@ -43,7 +44,7 @@ namespace WebCoreApp.Pages.Product
             double price = Convert.ToDouble(Request.Form["IdmdlPrice"]);
 
             bool modifiedstatus = false;
-            string Strdata = ""; string PID = "";
+            string PID = "";
             try
             {
                 using (SqlConnection db = new SqlConnection(path))
@@ -109,8 +110,8 @@ namespace WebCoreApp.Pages.Product
                             }
                         }
                     }
-                }
-                Response.Redirect("/Product/Product");
+                }              
+                Response.Redirect("/Product/Product?data="+Strdata);
             }
             catch (Exception ex)
             {
