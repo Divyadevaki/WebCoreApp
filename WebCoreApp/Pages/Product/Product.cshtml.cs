@@ -11,14 +11,14 @@ namespace WebCoreApp.Pages.Product
 {
     public class ProductModel : PageModel
     {       
-        public string Strdata;
+        public static string displaymsg="";
+        public string Strdata="";
         public List<ProductTbl> Product = new List<ProductTbl>();
         string path = @"Data Source=.\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True;";
         public void OnGet()
         {
-            string Dispmsg = Request.Query["data"].ToString();
-            if (!string.IsNullOrEmpty(Dispmsg))
-                Strdata = Dispmsg;
+            Strdata = displaymsg;
+            displaymsg = "";
             SqlConnection con = new SqlConnection(path);
             con.Open();
             SqlCommand cmd = new SqlCommand("select * from Product", con);
@@ -114,7 +114,8 @@ namespace WebCoreApp.Pages.Product
                         }
                     }
                 }
-                Response.Redirect("/Product/Product?data="+Strdata);
+                displaymsg = Strdata;
+                Response.Redirect("/Product/Product");
             }
             catch (Exception ex)
             {
