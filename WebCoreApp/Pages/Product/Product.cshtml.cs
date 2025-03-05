@@ -16,9 +16,11 @@ namespace WebCoreApp.Pages.Product
         public List<ProductTbl> Product = new List<ProductTbl>();
         string path = @"Data Source=.\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True;";
         public void OnGet()
-        {
-            Strdata = displaymsg;
-            displaymsg = "";
+        {            
+            GetRecords();
+        }
+        public void GetRecords()
+        {            
             SqlConnection con = new SqlConnection(path);
             con.Open();
             SqlCommand cmd = new SqlCommand("select * from Product", con);
@@ -35,10 +37,11 @@ namespace WebCoreApp.Pages.Product
                 };
                 Product.Add(obj);
             }
-            con.Close();
+            con.Close();           
         }
         public void OnPost()
         {
+            Strdata = "";
             string DMode = Request.Form["DeletemodeId"].ToString();
             string Mode = Request.Form["mode"].ToString();
             string prdid = Request.Form["IdmdlProductId"].ToString();
@@ -114,8 +117,7 @@ namespace WebCoreApp.Pages.Product
                         }
                     }
                 }
-                displaymsg = Strdata;
-                Response.Redirect("/Product/Product");
+                GetRecords();
             }
             catch (Exception ex)
             {
