@@ -3,54 +3,16 @@
 @{
 }
 
-<link href="https://cdn.datatables.net/v/dt/dt-2.1.4/datatables.min.css" rel="stylesheet">
-
-<script src="https://cdn.datatables.net/v/dt/dt-2.1.4/datatables.min.js"></script>
-
-<link href="https://cdn.datatables.net/2.1.4/js/dataTables.min.js" rel="stylesheet" />
-<script src="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css"></script>
-
-<script src="~/js/jquery.validate.min.js"></script>
-<script src="~/js/jquery.validate.js"></script>
-<style>
-    .modal-container {
-        background-color: #ffffff;
-        padding: 2rem;
-        border-radius: 5px;
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 450px;
-    }
-
-        .modal-container input {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-        }
-
-        .modal-container .modal-footer div {
-            width: 100%;
-            text-align: center;
-        }
-
-        .modal-container #footer {
-            justify-content: center;
-            align-items: center
-        }
-
-</style>
 <h1>Welcome to Product List</h1>
 
-<div>
+<div style="margin-bottom:1rem;">
     <a class="btn btn-group btn-outline-primary" id="CreateNew" onclick="CreateRecord()">Create</a>
 </div>
-<table id="Product_table" class="table table-bordered table-responsive">
+<table id="Product_table" class="table table-responsive">
     <thead>
         <tr>
             <th id="checkbxcol_th" class="firstcol">SNo</th>
-            <th>SNo</th>
+            <th>Product Id</th>
             <th>Product Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -88,16 +50,16 @@
         <div class="modal-content modal-container">
             <form method="post">
                 <div class="modal-header">
-                    <b id="Idheader"></b>                 
+                    <b id="Idheader"></b>
                     <a href="#" onclick="closeEditmodal()">&times;</a>
                 </div>
 
-                <div class="modal-body" id="Idmdlbody">                                         
-                        <input type="text" id="mode" name="mode" value="" hidden>
-                        <input type="text" id="IdmdlProductId" name="IdmdlProductId" hidden>
-                        <input type="text" class="textvalidate" id="IdmdlProductName" name="IdmdlProductName" placeholder="Product Name">
-                        <input type="text" id="IdmdlDescription" name="IdmdlDescription" placeholder="Description">
-                        <input type="text" class="Numericvalidate" id="IdmdlPrice" name="IdmdlPrice" placeholder="Price" maxlength="6">                                        
+                <div class="modal-body" id="Idmdlbody">
+                    <input type="text" id="mode" name="mode" value="" hidden>
+                    <input type="text" id="IdmdlProductId" name="IdmdlProductId" hidden>
+                    <input type="text" class="textvalidate" id="IdmdlProductName" name="IdmdlProductName" placeholder="Product Name">
+                    <input type="text" id="IdmdlDescription" name="IdmdlDescription" placeholder="Description">
+                    <input type="text" class="Numericvalidate" id="IdmdlPrice" name="IdmdlPrice" placeholder="Price" maxlength="6">
                 </div>
                 <div class="modal-footer" style="margin-top:-1rem">
                     <div class="row">
@@ -136,14 +98,12 @@
         </div>
     </div>
 </form>
-
-@if (!string.IsNullOrEmpty(Model.Strdata))
-{
+@section Displaymessage{
     <script type="text/javascript">
-        alert('@Model.Strdata');
+        $('#Product_table').DataTable();
+        $.notify('@Model.Strdata', { globalPosition: "top center", className: "success" });
     </script>
 }
-
 <script type="text/javascript">
     debugger
 
@@ -182,6 +142,4 @@
         $('#IdmdlPrice').val("");
         $('#IdEditmodal').modal('show');
     }
-
-
 </script>

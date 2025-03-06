@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebCoreApp.styles.css" asp-append-version="true" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+    
+
 </head>
 <body>
     <header>
@@ -44,8 +47,21 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <link href="~/datatables/css/datatables.checkboxes.css" rel="stylesheet" />
+    <link href="~/datatables/css/datatables.css" rel="stylesheet" />
+    <link href="~/datatables/css/datatables.min.css" rel="stylesheet" />
+
+    <script src="~/datatables/js/datatables.checkboxes.js"></script>
+    <script src="~/datatables/js/datatables.checkboxes.min.js"></script>
+    <script src="~/datatables/js/datatables.js"></script>
+    <script src="~/datatables/js/datatables.min.js"></script>
+    <script src="~/js/notify.js"></script>
+ 
+    @RenderSection("Displaymessage",false);
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

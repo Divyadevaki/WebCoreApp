@@ -1,0 +1,40 @@
+﻿
+.modal-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+    .modal-container input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+    }
+
+    .modal-container .modal-footer div {
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal-container #footer {
+        justify-content: center;
+        align-items: center
+    }
+
+.table tbody tr td, .table thead tr th {
+    text-align: center;
+    border: 1px solid white;
+}
+
+.table tbody tr td {
+    background-color: grey;
+}
+
+.table thead tr th {
+    background-color: cadetblue;
+}
